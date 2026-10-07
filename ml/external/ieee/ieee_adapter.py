@@ -1,11 +1,11 @@
 """
-IEEE-CIS to MerchantShield raw-schema adapter.
+IEEE-CIS to RISKOVA AI raw-schema adapter.
 
 PURPOSE
 -------
 Map the IEEE-CIS Fraud Detection dataset (Vesta / Kaggle 2019) into the
 exact column contract expected by ml/features/build_features.py, so the
-existing MerchantShield feature-engineering pipeline can be applied
+existing RISKOVA AI feature-engineering pipeline can be applied
 without modification.
 
 WHAT THIS MODULE IS AND IS NOT
@@ -45,7 +45,7 @@ HONEST FEATURE DEGRADATIONS (documented here, visible in output metadata):
                            proxy. 11.1% of rows have addr1=NaN; those rows get
                            geo_region="geo_unknown", yielding new_geo_flag=0.
                            Billing region changes rarely — this is not equivalent
-                           to MerchantShield's per-transaction geo region.
+                           to RISKOVA AI's per-transaction geo region.
   - hour_of_day/is_night/day_of_week: APPROXIMATE. TransactionDT is a timedelta
                            in seconds from an undisclosed reference datetime. We
                            use an inferred reference (IEEE_REFERENCE_DATETIME) to
@@ -116,7 +116,7 @@ def load_raw(
     pd.DataFrame
         Raw IEEE-CIS data with only the columns needed by this adapter,
         sorted ascending by TransactionDT. The DataFrame is NOT yet adapted
-        to the MerchantShield schema — call adapt() for that.
+        to the RISKOVA AI schema — call adapt() for that.
     """
     if not os.path.exists(txn_path):
         raise FileNotFoundError(
@@ -237,7 +237,7 @@ def validate_d11_proxy(df: pd.DataFrame, *, verbose: bool = True) -> dict:
 
 def adapt(df: pd.DataFrame, *, d11_assessment: dict | None = None) -> tuple[pd.DataFrame, dict]:
     """
-    Transform the raw IEEE-CIS DataFrame into the MerchantShield raw-schema
+    Transform the raw IEEE-CIS DataFrame into the RISKOVA AI raw-schema
     column contract required by build_features.build_features().
 
     Does NOT call build_features — that is done by ieee_features.build_ieee_features().
@@ -320,7 +320,7 @@ def adapt(df: pd.DataFrame, *, d11_assessment: dict | None = None) -> tuple[pd.D
 
     # ------------------------------------------------------------------ #
     # 6. amount  <- TransactionAmt (USD)
-    # MerchantShield's original training used INR amounts. The cost model
+    # RISKOVA AI's original training used INR amounts. The cost model
     # uses amount * fn_cost_fraction — the currency symbol changes but the
     # relative ordering and ratio features are unaffected. Experiment B will
     # use USD amounts throughout consistently.
@@ -360,7 +360,7 @@ def adapt(df: pd.DataFrame, *, d11_assessment: dict | None = None) -> tuple[pd.D
     # ------------------------------------------------------------------ #
     # 9. payment_method  <- CONSTANT "card_payment"
     # card4 (visa/mastercard/discover/amex) could serve as a proxy, but
-    # it has 0.3% null and MerchantShield's feature pipeline does not use
+    # it has 0.3% null and RISKOVA AI's feature pipeline does not use
     # payment_method directly in FEATURE_COLUMNS. Setting a constant avoids
     # any incidental grouping or novelty detection on this field.
     # ------------------------------------------------------------------ #
@@ -464,7 +464,7 @@ def load_and_adapt(
 
     Returns
     -------
-    adapted : pd.DataFrame  — MerchantShield raw-schema columns + is_fraud + TransactionDT
+    adapted : pd.DataFrame  — RISKOVA AI raw-schema columns + is_fraud + TransactionDT
     metadata : dict         — all transformation decisions and quality findings
     """
     df = load_raw(txn_path, identity_path, verbose=verbose)

@@ -3,7 +3,7 @@ Experiment B — External Retraining on IEEE-CIS
 ===============================================
 
 QUESTION ANSWERED:
-  "Can MerchantShield's feature-engineering + training methodology be
+  "Can RISKOVA AI's feature-engineering + training methodology be
    retrained from scratch on IEEE-CIS, and does it outperform baselines
    on that dataset?"
 
@@ -14,7 +14,7 @@ WHAT THIS EXPERIMENT IS:
     learning_rate, scale_pos_weight, early stopping).
   - Threshold selection uses the EXTERNAL validation set only — the test set
     is never touched during selection.
-  - The same cost-based threshold-selection rule as MerchantShield's original
+  - The same cost-based threshold-selection rule as RISKOVA AI's original
     pipeline: minimise expected cost subject to recall >= 80%.
   - Baselines: Logistic Regression and a majority-class naive classifier.
   - The test set is scored ONCE at the selected threshold.
@@ -28,7 +28,7 @@ WHAT THIS EXPERIMENT IS NOT:
     on the external validation set.
 
 NOTE ON PREVALENCE SHIFT:
-  IEEE-CIS fraud prevalence is ~3.5% vs ~1.6% in MerchantShield's synthetic
+  IEEE-CIS fraud prevalence is ~3.5% vs ~1.6% in RISKOVA AI's synthetic
   training data. scale_pos_weight for the retrained model is computed from the
   EXTERNAL training set. The threshold sweep on the external validation set
   will find a different optimal point than 0.40 (expected from the sensitivity
@@ -36,7 +36,7 @@ NOTE ON PREVALENCE SHIFT:
 
 NOTE ON COST MODEL:
   We retain fp_cost=50, fn_cost_fraction=0.5 for direct comparability with the
-  synthetic experiment. IEEE-CIS amounts are USD; MerchantShield's were INR.
+  synthetic experiment. IEEE-CIS amounts are USD; RISKOVA AI's were INR.
   The cost numbers are labelled as "cost units" throughout. Absolute values are
   NOT comparable across experiments; relative ordering within each experiment is.
 """

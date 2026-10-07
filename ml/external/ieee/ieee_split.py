@@ -24,7 +24,7 @@ to capture.
 However: cards that appear in the test set with prior transactions that fall
 in the training set are handled correctly — those prior-transaction features
 will have been built from the full chronological history up to each
-transaction's timestamp. This mirrors how MerchantShield's synthetic split
+transaction's timestamp. This mirrors how RISKOVA AI's synthetic split
 works (days-based boundary applied to an already-built feature frame).
 """
 

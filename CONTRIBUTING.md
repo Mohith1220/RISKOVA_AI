@@ -1,4 +1,4 @@
-# Contributing to MerchantShield AI
+# Contributing to RISKOVA AI
 
 This document covers the developer workflow: environment setup, the commands you
 need to know, what CI checks, commit conventions, and the rules that protect the

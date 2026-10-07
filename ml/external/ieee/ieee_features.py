@@ -70,7 +70,7 @@ def build_ieee_features(
     verbose: bool = True,
 ) -> tuple[pd.DataFrame, dict]:
     """
-    Build MerchantShield features from the IEEE-CIS adapted DataFrame.
+    Build RISKOVA AI features from the IEEE-CIS adapted DataFrame.
 
     Parameters
     ----------

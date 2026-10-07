@@ -1,6 +1,6 @@
-# MerchantShield AI — Documentation Index
+# RISKOVA AI — Documentation Index
 
-This directory contains technical documentation for the MerchantShield AI project.
+This directory contains technical documentation for the RISKOVA AI project.
 For the project overview, quick-start, and results summary see the root
 [README.md](../README.md).
 

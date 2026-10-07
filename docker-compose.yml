@@ -1,4 +1,4 @@
-# MerchantShield AI — docker-compose
+# RISKOVA AI — docker-compose
 #
 # QUICK START:
 #   docker compose up --build
@@ -15,8 +15,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: merchantshield-ai:latest
-    container_name: merchantshield-api
+    image: riskova-ai:latest
+    container_name: riskova-api
     ports:
       - "8000:8000"
     # Mount the audit database directory so decisions persist across container

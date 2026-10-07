@@ -1,4 +1,4 @@
-# MerchantShield AI — Docker build context exclusions
+# RISKOVA AI — Docker build context exclusions
 #
 # Mirrors .gitignore closely, with a few Docker-specific additions.
 

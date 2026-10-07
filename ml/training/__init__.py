@@ -1,1 +1,1 @@
-# MerchantShield AI — ml.training package
+# RISKOVA AI — ml.training package

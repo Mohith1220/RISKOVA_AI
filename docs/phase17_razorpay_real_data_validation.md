@@ -1,6 +1,6 @@
 # Phase 17 — Razorpay Real-Data Held-Out Validation
 
-*External validation track. No MerchantShield v1 production code was modified.*
+*External validation track. No RISKOVA AI v1 production code was modified.*
 
 ---
 
@@ -12,7 +12,7 @@ The Razorpay AI Risk Manager track requires:
 > with measured precision and recall on a held-out test set."
 > — and — "Honest metrics including false-positive cost."
 
-Phase 17 produces a defensible, reproducible held-out evaluation of MerchantShield's
+Phase 17 produces a defensible, reproducible held-out evaluation of RISKOVA AI's
 fraud-detection methodology on real-world transaction data, using the IEEE-CIS Fraud
 Detection dataset as the external real-world source.
 
@@ -31,7 +31,7 @@ dataset for this evaluation:
 - **Scale**: ~590,540 labelled transactions across ~6 months.
 - **Chronological structure**: `TransactionDT` provides a timedelta suitable for
   time-ordered train/validation/test splitting.
-- **Per-card history**: card-level transaction sequences enable MerchantShield's
+- **Per-card history**: card-level transaction sequences enable RISKOVA AI's
   behavioural features (velocity, amount z-score, account familiarity).
 
 **Important caveats:**
@@ -39,7 +39,7 @@ dataset for this evaluation:
   Vesta Corporation.
 - It is not UPI, POS, or Indian merchant transaction data.
 - Fraud patterns in e-commerce (account takeover + chargeback) differ from
-  MerchantShield's synthetic merchant context.
+  RISKOVA AI's synthetic merchant context.
 - All results should be labelled "evaluated on IEEE-CIS real-world e-commerce data"
   rather than "proven on Razorpay transactions."
 
@@ -129,7 +129,7 @@ inspected until the threshold was frozen.
 
 ## 6. Feature engineering
 
-Phase 17 uses **16 features**: the 15 MerchantShield base features plus
+Phase 17 uses **16 features**: the 15 RISKOVA AI base features plus
 `card_product_share` (Phase 15 winner, reduces FP by 17.7%).
 
 All features are built by existing, unchanged implementations:
@@ -387,7 +387,7 @@ and recall. Precision is structurally limited by prevalence and missing features
 ## 15. Limitations
 
 1. **Not Razorpay data.** IEEE-CIS is US e-commerce card-not-present fraud.
-   MerchantShield was designed for a merchant payment context (UPI/POS/Razorpay-style).
+   RISKOVA AI was designed for a merchant payment context (UPI/POS/Razorpay-style).
    Fraud patterns differ.
 
 2. **Low external precision (6.3%).** Structurally explained by: 3.5% prevalence
@@ -416,7 +416,7 @@ and recall. Precision is structurally limited by prevalence and missing features
 
 ## 16. Razorpay objective assessment
 
-**Does MerchantShield now satisfy the AI Risk Manager track requirements?**
+**Does RISKOVA AI now satisfy the AI Risk Manager track requirements?**
 
 | Requirement | Status | Evidence |
 |---|---|---|
@@ -446,7 +446,7 @@ and recall. Precision is structurally limited by prevalence and missing features
 The Phase 17 experiment provides the strongest available evidence:
 
 - On real-world e-commerce chargeback data (IEEE-CIS), a LightGBM model trained
-  with MerchantShield's feature engineering achieves **ROC-AUC 0.771** and catches
+  with RISKOVA AI's feature engineering achieves **ROC-AUC 0.771** and catches
   **79.8% of fraud** on a chronological held-out test set.
 - `card_product_share` (Phase 15) generalises to real data — 3rd most important
   feature on IEEE-CIS.
@@ -458,7 +458,7 @@ The Phase 17 experiment provides the strongest available evidence:
 
 The system answers the Razorpay brief's core question with honest, defensible metrics:
 
-> *MerchantShield detects 79.8% of real-world e-commerce fraud at 6.3% precision
+> *RISKOVA AI detects 79.8% of real-world e-commerce fraud at 6.3% precision
 > on a chronological held-out test set, with false-positive cost quantified under
 > stated illustrative assumptions. Device-novelty and transaction-failure signals,
 > absent from this dataset, are the primary remaining gap between current performance

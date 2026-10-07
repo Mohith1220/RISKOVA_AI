@@ -8,7 +8,7 @@ DESIGN PRINCIPLES
 2. Tests that require the actual downloaded files are gated with BOTH a skip
    marker (when data absent) AND a pytest `integration` mark (so CI can
    exclude them from the default run via `-m "not integration"`).
-3. These tests NEVER import or call any part of the synthetic MerchantShield
+3. These tests NEVER import or call any part of the synthetic RISKOVA AI
    pipeline for comparison — they are self-contained.
 4. The tests verify logic correctness, leakage prevention, schema contracts,
    and sentinel/inert behavior. They do NOT assert specific metric values
@@ -82,7 +82,7 @@ def _make_raw_txn(n=100, seed=42) -> pd.DataFrame:
 
 
 def _make_adapted(n=100, seed=42) -> pd.DataFrame:
-    """Return an adapted DataFrame (MerchantShield raw schema)."""
+    """Return an adapted DataFrame (RISKOVA AI raw schema)."""
     raw = _make_raw_txn(n, seed)
     adapted, _ = adapt(raw)
     return adapted

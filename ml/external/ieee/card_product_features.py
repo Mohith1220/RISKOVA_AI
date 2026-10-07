@@ -7,10 +7,10 @@ Test whether card-to-ProductCD familiarity features improve the external
 IEEE-CIS model's precision/recall tradeoff compared to the Phase 14 baseline.
 
 This module is EXPERIMENT-ONLY. It does NOT:
-  - modify the production MerchantShield feature pipeline (build_features.py)
+  - modify the production RISKOVA AI feature pipeline (build_features.py)
   - modify the frozen lgbm_v1 model or its 0.40 threshold
   - modify any existing synthetic pipeline
-  - merge these features into the MerchantShield API or frontend
+  - merge these features into the RISKOVA AI API or frontend
 
 HYPOTHESIS (Phase 14 evidence)
 -------------------------------

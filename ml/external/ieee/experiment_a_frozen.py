@@ -3,7 +3,7 @@ Experiment A — Frozen LightGBM Transfer to IEEE-CIS
 ====================================================
 
 QUESTION ANSWERED:
-  "Does the existing frozen lgbm_v1 model (trained on MerchantShield's
+  "Does the existing frozen lgbm_v1 model (trained on RISKOVA AI's
    synthetic data) generalise to the IEEE-CIS external dataset?"
 
 WHAT THIS EXPERIMENT IS:
@@ -30,7 +30,7 @@ FEATURE CONTRACT:
   signal in the external experiment.
 
 COST MODEL NOTE:
-  MerchantShield's cost model uses INR (Rs50 FP, 0.5×amount FN).
+  RISKOVA AI's cost model uses INR (Rs50 FP, 0.5×amount FN).
   IEEE-CIS amounts are in USD. We retain the same numeric parameters for
   direct comparability — the absolute cost numbers are reported as "cost
   units" rather than a named currency. The relative ordering of thresholds
@@ -108,7 +108,7 @@ def run_experiment_a(
     if not os.path.exists(FROZEN_MODEL_PATH):
         raise FileNotFoundError(
             f"Frozen model not found at {FROZEN_MODEL_PATH}. "
-            "Ensure the MerchantShield repository is intact."
+            "Ensure the RISKOVA AI repository is intact."
         )
     model = joblib.load(FROZEN_MODEL_PATH)
 

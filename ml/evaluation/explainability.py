@@ -1,5 +1,5 @@
 """
-Explainability layer for MerchantShield AI.
+Explainability layer for RISKOVA AI.
 
 Uses shap.TreeExplainer on the frozen LightGBM model (unchanged from Phase 4/5).
 

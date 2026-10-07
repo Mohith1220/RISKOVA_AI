@@ -1,6 +1,6 @@
 # Phase 15 — Card-Product Familiarity Feature Experiment
 
-*External validation track only. No MerchantShield v1 production code was modified.*
+*External validation track only. No RISKOVA AI v1 production code was modified.*
 
 ---
 

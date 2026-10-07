@@ -1,5 +1,5 @@
 """
-Behavioral Anomaly Investigation Engine for MerchantShield AI.
+Behavioral Anomaly Investigation Engine for RISKOVA AI.
 
 PURPOSE (Phase 2):
 Analyzes the customer's transaction against their available historical baseline

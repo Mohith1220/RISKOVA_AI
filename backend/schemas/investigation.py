@@ -2,7 +2,7 @@
 Investigation schemas for AI Risk Investigator (Phase 4).
 
 Defines the structured input contract containing ONLY grounded facts
-and evidence already produced by MerchantShield.
+and evidence already produced by RISKOVA AI.
 """
 
 from typing import Optional, List, Dict, Any
@@ -12,7 +12,7 @@ from pydantic import BaseModel, Field
 class RiskInvestigationInput(BaseModel):
     """
     Structured evidence package supplied to the AI Risk Investigator.
-    Contains ONLY grounded values already calculated by MerchantShield.
+    Contains ONLY grounded values already calculated by RISKOVA AI.
     """
     # 1. FACTS (Directly observed transaction inputs)
     transaction_id: str

@@ -1,5 +1,5 @@
 """
-Feature engineering for MerchantShield AI.
+Feature engineering for RISKOVA AI.
 
 LEAKAGE RULE (enforced and tested — see tests/test_no_leakage.py):
 For a transaction at time T, every feature value must depend ONLY on transactions

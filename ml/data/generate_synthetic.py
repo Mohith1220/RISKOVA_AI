@@ -1,5 +1,5 @@
 """
-Synthetic transaction data generator for MerchantShield AI.
+Synthetic transaction data generator for RISKOVA AI.
 
 DESIGN PRINCIPLE (see docs/dataset.md for full writeup):
 ------------------------------------------------------------------

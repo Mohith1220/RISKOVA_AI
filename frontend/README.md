@@ -1,6 +1,6 @@
-# MerchantShield AI — frontend
+# RISKOVA AI — frontend
 
-This is the React/Vite dashboard for MerchantShield AI. It consumes the FastAPI
+This is the React/Vite dashboard for RISKOVA AI. It consumes the FastAPI
 backend's documented REST contract only — see the root [`README.md`](../README.md)
 for the full project overview, and [`../docs/frontend.md`](../docs/frontend.md) for
 this app's architecture and design decisions.

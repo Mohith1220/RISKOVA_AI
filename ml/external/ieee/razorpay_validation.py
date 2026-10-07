@@ -4,7 +4,7 @@ Phase 17 — Razorpay Real-Data Held-Out Validation
 
 PURPOSE
 -------
-Produce a defensible, reproducible held-out evaluation of MerchantShield's
+Produce a defensible, reproducible held-out evaluation of RISKOVA AI's
 fraud-detection methodology on real-world e-commerce transaction data, to
 satisfy the Razorpay AI Risk Manager track requirement:
 
@@ -29,7 +29,7 @@ WHAT THIS MODULE IS
 FEATURE SET
 -----------
 This experiment uses 16 features:
-  - All 15 FEATURE_COLUMNS from MerchantShield's production feature pipeline
+  - All 15 FEATURE_COLUMNS from RISKOVA AI's production feature pipeline
     (2 are inert on IEEE-CIS: new_device_flag=0, failed_ratio_trailing10=0)
   - card_product_share from Phase 15 (selected winner, reduces FP by 17.7%)
 

@@ -1,15 +1,15 @@
 # External Validation — IEEE-CIS Fraud Detection Dataset
 
-This document describes the IEEE-CIS external validation track for MerchantShield AI.
+This document describes the IEEE-CIS external validation track for RISKOVA AI.
 It is a **separate research track** that does not modify any part of the existing
-MerchantShield v1 production system (synthetic pipeline, frozen model, threshold,
+RISKOVA AI v1 production system (synthetic pipeline, frozen model, threshold,
 decision engine, API, or frontend).
 
 ---
 
 ## Purpose
 
-MerchantShield's model performance report concluded:
+RISKOVA AI's model performance report concluded:
 
 > **OBJECTIVE SUBSTANTIALLY ACHIEVED, EXTERNAL VALIDATION REMAINS.**
 
@@ -17,11 +17,11 @@ The primary open question is: *do the model's learned patterns generalise beyond
 synthetic data distribution?* This track attempts to answer two separate questions:
 
 **Question A — Frozen model transfer:**
-Does the frozen `lgbm_v1` model (trained on MerchantShield's synthetic data) produce
+Does the frozen `lgbm_v1` model (trained on RISKOVA AI's synthetic data) produce
 meaningful predictions on IEEE-CIS without retraining?
 
 **Question B — Methodology transfer:**
-Can MerchantShield's feature-engineering and training methodology be retrained from
+Can RISKOVA AI's feature-engineering and training methodology be retrained from
 scratch on IEEE-CIS, and does it outperform baselines on that dataset?
 
 These are **not the same question**. A failed Answer A does not imply a failed Answer B.
@@ -89,14 +89,14 @@ The following are completely untouched by this external validation track:
 
 ## Feature Mapping
 
-MerchantShield uses 15 behavioural features. This section documents exactly what each
+RISKOVA AI uses 15 behavioural features. This section documents exactly what each
 feature maps to in the IEEE-CIS adapter.
 
 ### Active features (non-trivial signal expected)
 
 | Feature | IEEE-CIS source | Notes |
 |---|---|---|
-| `amount` | `TransactionAmt` | USD amounts (MerchantShield training used INR — relative ratios unaffected) |
+| `amount` | `TransactionAmt` | USD amounts (RISKOVA AI training used INR — relative ratios unaffected) |
 | `amount_zscore` | `card1` + `TransactionAmt` + `TransactionDT` | Per-card expanding z-score; exact |
 | `amount_vs_avg_ratio` | Same | Per-card expanding ratio; exact |
 | `prior_txn_count` | `card1` + `TransactionDT` | Exact count of prior transactions for this card |
@@ -161,7 +161,7 @@ The dataset spans 182 days (approximately 6 months, late 2017 through mid-2018).
 *before* the split is applied. A test-set transaction's features use all prior
 transactions for that card, including those in the training split — this matches how
 the model would operate in production (where historical context is available) and
-matches the same methodology as MerchantShield's synthetic split.
+matches the same methodology as RISKOVA AI's synthetic split.
 
 ---
 
@@ -196,7 +196,7 @@ Experiment B.
 ### Cost model note
 
 The same `CostAssumptions(fp_cost=50, fn_cost_fraction=0.5)` parameters are
-used. IEEE-CIS amounts are USD; MerchantShield's were INR. Cost totals are
+used. IEEE-CIS amounts are USD; RISKOVA AI's were INR. Cost totals are
 labelled "cost units" — absolute values are **not** comparable across datasets,
 only within each dataset.
 
@@ -231,7 +231,7 @@ will also differ.
 
 Experiment B succeeds if the retrained LightGBM outperforms both baselines on
 expected cost while maintaining recall ≥ 80%. This would demonstrate that
-MerchantShield's feature design and training methodology is transportable to
+RISKOVA AI's feature design and training methodology is transportable to
 a different (real-data) fraud dataset.
 
 ---
@@ -257,7 +257,7 @@ a different (real-data) fraud dataset.
    evolving fraud tactics, and long-term customer behaviour are not captured.
 
 6. **E-commerce context:** IEEE-CIS is card-not-present e-commerce fraud (Vesta
-   Corporation). MerchantShield was designed for a merchant payment context. Fraud
+   Corporation). RISKOVA AI was designed for a merchant payment context. Fraud
    patterns may differ.
 
 7. **Prior transaction history distribution:** The external dataset has cards with
@@ -281,7 +281,7 @@ a different (real-data) fraud dataset.
 2. Extract to the local path expected by the experiment runner
    (or pass `--txn` and `--idnt` arguments to override).
 
-3. Ensure the MerchantShield Python environment is active:
+3. Ensure the RISKOVA AI Python environment is active:
    ```bash
    pip install -r requirements.txt
    ```
@@ -321,14 +321,14 @@ pytest tests/test_ieee_external.py -v -k "TestIntegration"
 
 ## Interpreting Results
 
-Results from this track **do not replace** the MerchantShield synthetic benchmark.
+Results from this track **do not replace** the RISKOVA AI synthetic benchmark.
 They provide additional evidence about generalisability.
 
 | Scenario | Interpretation |
 |---|---|
 | Exp A succeeds (recall > naïve baseline, precision > prevalence) | The frozen model's learned patterns partially transfer. The 8 active features carry real signal across datasets. |
 | Exp A fails (recall ≈ 0 or precision ≈ prevalence) | The frozen model is calibrated to the synthetic distribution and does not transfer. This is expected given the ~2.2× prevalence difference. |
-| Exp B succeeds (LightGBM beats LR baseline on cost) | MerchantShield's feature design is transportable. The methodology works on real data. |
+| Exp B succeeds (LightGBM beats LR baseline on cost) | RISKOVA AI's feature design is transportable. The methodology works on real data. |
 | Exp B fails (LightGBM cannot beat LR baseline) | The 13-feature subset is insufficient for this dataset, or the label noise / missing features prevent the methodology from working. |
 
 A failed Experiment A plus a successful Experiment B would be the most common expected
@@ -414,7 +414,7 @@ prevalence baseline), beating both the naive and LR baselines on expected cost.
 However, precision (5.7%) is very low — reflecting IEEE-CIS's fraud complexity
 and the missing device/failure features.
 
-### Comparison with synthetic MerchantShield v1
+### Comparison with synthetic RISKOVA AI v1
 
 | Metric | Synthetic (lgbm_v1 at 0.40) | External B (ieee_lgbm at 0.35) |
 |---|---|---|
@@ -430,6 +430,6 @@ The performance gap is substantial but expected for three reasons:
 1. The synthetic pipeline had 15 active features including device novelty and
    failure signals; the external experiment has only 13 effective features.
 2. IEEE-CIS fraud (e-commerce chargebacks, label propagation) is a harder and
-   noisier classification problem than the MerchantShield synthetic generator.
+   noisier classification problem than the RISKOVA AI synthetic generator.
 3. Precision is especially low because IEEE-CIS at 3.4% prevalence with a broad
    feature base has many ambiguous legitimate transactions near the decision boundary.

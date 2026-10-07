@@ -1,5 +1,5 @@
 """
-Related-Transaction & Network Risk Investigation Engine for MerchantShield AI.
+Related-Transaction & Network Risk Investigation Engine for RISKOVA AI.
 
 PURPOSE (Phase 3):
 Evaluates entity-level linkages and related-transaction clustering (Device Sharing,

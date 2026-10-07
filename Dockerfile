@@ -1,4 +1,4 @@
-# MerchantShield AI — Dockerfile
+# RISKOVA AI — Dockerfile
 #
 # Multi-stage build:
 #   Stage 1 (builder-node): builds the React frontend into static assets.
@@ -15,8 +15,8 @@
 #   ✗  No authentication — prototype only, not for public exposure as-is
 #   ✗  No production WSGI/ASGI tuning (single uvicorn worker, appropriate for demo)
 #
-# Build:   docker build -t merchantshield-ai .
-# Run:     docker run -p 8000:8000 merchantshield-ai
+# Build:   docker build -t riskova-ai .
+# Run:     docker run -p 8000:8000 riskova-ai
 # Open:    http://localhost:8000          (dashboard)
 #          http://localhost:8000/docs     (API docs)
 

@@ -224,7 +224,7 @@ class TestLLMAdapterAndFallbacks:
     """Tests for optional LLM adapter and graceful degradation."""
 
     def test_llm_unavailable_fallback(self, monkeypatch):
-        monkeypatch.delenv("MERCHANTSHIELD_LLM_URL", raising=False)
+        monkeypatch.delenv("RISKOVA_LLM_URL", raising=False)
         inp = TestGroundingValidator()._sample_input()
         report = generate_ai_investigation_report(inp)
         assert report.status == "DETERMINISTIC_SYNTHESIS"
@@ -232,7 +232,7 @@ class TestLLMAdapterAndFallbacks:
 
     @respx.mock
     def test_llm_timeout_fallback(self, monkeypatch):
-        monkeypatch.setenv("MERCHANTSHIELD_LLM_URL", "https://api.ai-risk.internal/v1/chat")
+        monkeypatch.setenv("RISKOVA_LLM_URL", "https://api.ai-risk.internal/v1/chat")
         respx.post("https://api.ai-risk.internal/v1/chat").mock(side_effect=httpx.TimeoutException("Timeout"))
 
         inp = TestGroundingValidator()._sample_input()
@@ -243,7 +243,7 @@ class TestLLMAdapterAndFallbacks:
 
     @respx.mock
     def test_malformed_json_fallback(self, monkeypatch):
-        monkeypatch.setenv("MERCHANTSHIELD_LLM_URL", "https://api.ai-risk.internal/v1/chat")
+        monkeypatch.setenv("RISKOVA_LLM_URL", "https://api.ai-risk.internal/v1/chat")
         respx.post("https://api.ai-risk.internal/v1/chat").mock(
             return_value=httpx.Response(200, json={"choices": [{"message": {"content": "INVALID NON-JSON RESPONSE"}}]})
         )
@@ -254,7 +254,7 @@ class TestLLMAdapterAndFallbacks:
 
     @respx.mock
     def test_invalid_schema_fallback(self, monkeypatch):
-        monkeypatch.setenv("MERCHANTSHIELD_LLM_URL", "https://api.ai-risk.internal/v1/chat")
+        monkeypatch.setenv("RISKOVA_LLM_URL", "https://api.ai-risk.internal/v1/chat")
         respx.post("https://api.ai-risk.internal/v1/chat").mock(
             return_value=httpx.Response(200, json={"choices": [{"message": {"content": json.dumps({"wrong_key": 123})}}]})
         )
@@ -265,7 +265,7 @@ class TestLLMAdapterAndFallbacks:
 
     @respx.mock
     def test_grounding_failure_fallback(self, monkeypatch):
-        monkeypatch.setenv("MERCHANTSHIELD_LLM_URL", "https://api.ai-risk.internal/v1/chat")
+        monkeypatch.setenv("RISKOVA_LLM_URL", "https://api.ai-risk.internal/v1/chat")
         # LLM returns JSON with hallucinated device
         hallucinated_data = {
             "status": "GENERATED",

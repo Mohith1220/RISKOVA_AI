@@ -1,5 +1,5 @@
 """
-MerchantShield AI backend entry point.
+RISKOVA AI backend entry point.
 
 Startup behavior: loads the frozen model + explainer + metadata exactly once
 (see services/model_loader.py) and opens the audit DB connection. If the model
@@ -26,7 +26,7 @@ from backend.services.audit_service import AuditStore
 from backend.api.routes import router
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("merchantshield")
+logger = logging.getLogger("riskova")
 
 
 @asynccontextmanager

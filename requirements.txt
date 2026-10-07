@@ -1,4 +1,4 @@
-# MerchantShield AI — Python dependencies
+# RISKOVA AI — Python dependencies
 # Pinned to the versions this project was built and tested against.
 # Install with: pip install -r requirements.txt
 # (If pip complains about an externally-managed environment, add --break-system-packages.)

@@ -1,5 +1,5 @@
 """
-Shared pytest configuration and fixtures for the MerchantShield test suite.
+Shared pytest configuration and fixtures for the RISKOVA AI test suite.
 
 SESSION-SCOPED FIXTURES: the model artifact, SHAP explainer, and feature CSV
 are expensive to load (~5-10 s each). Scoping them to the session means they
@@ -17,7 +17,7 @@ finally block, which is verified by the test_api.py tests themselves.
 PATH SETUP: sys.path manipulation here is redundant alongside the __init__.py
 packages now present in ml/ and tests/, but it remains harmless and ensures
 the project root is importable even when pytest is invoked from outside the
-project root (e.g. `pytest merchantshield-ai/tests/`).
+project root (e.g. `pytest riskova-ai/tests/`).
 
 MARKS:
   integration -- marks tests that require the locally downloaded IEEE-CIS CSV

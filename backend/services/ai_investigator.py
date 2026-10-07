@@ -1,5 +1,5 @@
 """
-AI Risk Investigator for MerchantShield AI (Phase 4).
+AI Risk Investigator for RISKOVA AI (Phase 4).
 
 PURPOSE:
 Provides grounded, AI-assisted investigation synthesis explaining WHY a transaction
@@ -176,7 +176,7 @@ def deterministic_synthesizer(inp: RiskInvestigationInput) -> AIInvestigationRep
             f"Recommended policy action is '{inp.recommended_action}' (Risk Score: {inp.risk_score}/100) with no anomalous risk drivers detected."
         )
 
-    # 6. Formulate Analyst Action Guidance (Strictly bounded to existing MerchantShield evidence)
+    # 6. Formulate Analyst Action Guidance (Strictly bounded to existing RISKOVA AI evidence)
     if inp.recommended_action == "BLOCK":
         guidance = (
             f"Review the critical risk drivers and policy rule '{inp.policy_rule_id}' "
@@ -268,25 +268,25 @@ def verify_grounding(report: AIInvestigationReport, inp: RiskInvestigationInput)
 def optional_llm_adapter(inp: RiskInvestigationInput) -> Optional[AIInvestigationReport]:
     """
     Optional provider-agnostic HTTP adapter using standard httpx.
-    Activated only if MERCHANTSHIELD_LLM_URL environment variable is configured.
+    Activated only if RISKOVA_LLM_URL environment variable is configured.
     Falls back gracefully on timeout, malformed response, or grounding failure.
     """
-    llm_url = os.environ.get("MERCHANTSHIELD_LLM_URL")
+    llm_url = os.environ.get("RISKOVA_LLM_URL")
     if not llm_url:
         return None
 
-    api_key = os.environ.get("MERCHANTSHIELD_LLM_API_KEY", "")
+    api_key = os.environ.get("RISKOVA_LLM_API_KEY", "")
     headers = {"Content-Type": "application/json"}
     if api_key:
         headers["Authorization"] = f"Bearer {api_key}"
 
     payload = {
-        "model": os.environ.get("MERCHANTSHIELD_LLM_MODEL", "risk-investigator"),
+        "model": os.environ.get("RISKOVA_LLM_MODEL", "risk-investigator"),
         "messages": [
             {
                 "role": "system",
                 "content": (
-                    "You are the MerchantShield AI Risk Investigator. You provide grounded risk investigation "
+                    "You are the RISKOVA AI Risk Investigator. You provide grounded risk investigation "
                     "reports based strictly on the supplied evidence. Never invent entities, customers, devices, "
                     "or probabilities. Return valid JSON matching the AIInvestigationReport schema."
                 ),

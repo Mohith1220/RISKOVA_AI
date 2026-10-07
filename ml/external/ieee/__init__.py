@@ -1,4 +1,4 @@
-# MerchantShield AI — ml.external.ieee package
+# RISKOVA AI — ml.external.ieee package
 # IEEE-CIS Fraud Detection (Vesta / Kaggle 2019) external validation.
 # This package is a SEPARATE track. It does NOT modify:
 #   - ml/data/generate_synthetic.py
